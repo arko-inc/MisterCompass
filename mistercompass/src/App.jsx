@@ -16,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Africa/South Africa" element={<SouthAfrica />} />
+
         {Object.keys(continents).map((continent) =>
           continents[continent].map((country) =>
             country !== "South Africa" ? (
@@ -28,8 +29,11 @@ function App() {
           )
         )}
       </Routes>
+     
     </Router>
+  
   );
+  
 }
 
 export default App;

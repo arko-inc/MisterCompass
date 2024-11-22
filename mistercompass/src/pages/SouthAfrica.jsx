@@ -1,80 +1,91 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Footer from "../components/Footer";
 
 const SouthAfrica = () => {
+  const images = [
+    "/images/southafrica1.jpg",
+    "/images/southafrica2.jpg",
+    "/images/southafrica3.jpg",
+  ]; // Add your image paths
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000); // Change background every 4 seconds
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
     <div className="bg-gradient-to-b from-green-50 to-white min-h-screen">
       {/* Hero Section */}
-      <div className="relative">
-        <img
-          src="https://source.unsplash.com/1600x900/?south-africa,nature"
-          alt="South Africa Landscape"
-          className="w-full h-[60vh] object-cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
-          <h1 className="text-white text-5xl font-bold mb-4">Welcome to South Africa</h1>
-          <p className="text-white text-lg">
+      <div
+        className="relative h-[60vh] flex items-center justify-center"
+        style={{
+          backgroundImage: `url(${images[currentIndex]})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transition: "background-image 1s ease-in-out",
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="relative text-center text-white">
+          <h1 className="text-5xl font-bold mb-4 animate-pulse">
+            Welcome to <span className="animate-inflate-deflate">South Africa</span>
+          </h1>
+          <p className="text-lg mb-6">
             Discover the beauty, adventure, and culture of the Rainbow Nation 🌈
           </p>
+          <button
+            className="px-6 py-3 rounded-lg shadow-lg text-white hover:scale-105 transform transition-transform duration-300 ease-in-out bg-gradient-to-r from-red-500 to-pink-500 bg-opacity-20 backdrop-blur-md border border-white/20"
+          >
+            Start Your Journey
+          </button>
         </div>
       </div>
-
-      {/* About South Africa */}
-      <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Why Visit South Africa?</h2>
-        <p className="text-gray-600 leading-relaxed mb-4">
-          South Africa, known as the "Rainbow Nation," is a land of incredible diversity. From the rolling vineyards of
-          Stellenbosch to the rugged coastline of the Garden Route, this country offers something for every traveler.
-          Enjoy wildlife safaris in Kruger National Park, explore vibrant cities like Cape Town and Johannesburg, and
-          embrace the cultural richness of its people.
-        </p>
-        <p className="text-gray-600 leading-relaxed">
-          Whether you're seeking adventure, history, or relaxation, South Africa is the perfect destination!
-        </p>
-      </section>
-
-      {/* Highlights */}
-      <section className="bg-gray-50 py-12">
+            {/* Highlights */}
+            <section className="bg-[#141834] py-12">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Top Highlights</h2>
+          <h2 className="text-3xl font-bold text-gray-300 mb-6 text-center">Top Highlights</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Highlight 1 */}
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-110 transition duration-700">
+            <div className="bg-[#1C325B]  shadow-lg rounded-lg overflow-hidden hover:scale-110 transition duration-700">
               <img
-                src="https://source.unsplash.com/800x600/?table-mountain"
+                src="/images/tablemountain.jpg"
                 alt="Table Mountain"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Table Mountain</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-2 text-gray-300">Table Mountain</h3>
+                <p className="text-gray-300">
                   Take a cable car ride or hike to the top of this iconic mountain for stunning views of Cape Town.
                 </p>
               </div>
             </div>
             {/* Highlight 2 */}
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-110 transition duration-700">
+            <div className="bg-[#1C325B] shadow-lg rounded-lg overflow-hidden hover:scale-110 transition duration-700">
               <img
-                src="https://source.unsplash.com/800x600/?safari"
+                src="/images/kruger.jpg"
                 alt="Kruger National Park"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Kruger National Park</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-2 text-gray-300">Kruger National Park</h3>
+                <p className="text-gray-300">
                   Experience a thrilling safari and spot the Big Five: lion, leopard, rhino, elephant, and buffalo.
                 </p>
               </div>
             </div>
             {/* Highlight 3 */}
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-110 transition duration-700">
+            <div className="bg-[#1C325B] shadow-lg rounded-lg overflow-hidden hover:scale-110 transition duration-700">
               <img
-                src="https://source.unsplash.com/800x600/?cape-town"
+                src="/images/capetown.jpg"
                 alt="Cape Town"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Cape Town</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-2 text-gray-300">Cape Town</h3>
+                <p className="text-gray-300">
                   Explore the vibrant streets, beautiful beaches, and rich history of South Africa's Mother City.
                 </p>
               </div>
@@ -84,13 +95,7 @@ const SouthAfrica = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-6">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-sm">
-            © 2024 MisterCompass. Discover the world with us! | South Africa Edition 🌍
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

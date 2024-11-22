@@ -5,7 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        inflateDeflate: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.1)" },
+        },
+      },
+      animation: {
+        "inflate-deflate": "inflateDeflate 2s infinite",
+      },
+    },
   },
   plugins: [],
-}
+};
