@@ -6,7 +6,7 @@ import SouthAfrica from "./pages/SouthAfrica";
 
 const continents = {
   Africa: ["Nigeria", "South Africa", "Egypt", "Morocco"],
-  // ... other continents
+
 };
 
 function App() {
