@@ -2,50 +2,73 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [dropdown, setDropdown] = useState(null);
-  const [subDropdown, setSubDropdown] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeSubDropdown, setActiveSubDropdown] = useState(null);
+
   const dropdownRef = useRef(null);
 
   // List of continents and countries
   const continents = {
-    Africa: ["Nigeria", "South Africa", "Egypt", "Morocco", "Kenya", "Ghana", "Ethiopia", "Tunisia"],
-    Asia: ["Japan", "India", "China", "Thailand", "South Korea", "Vietnam", "Malaysia", "Indonesia"],
-    Europe: ["France", "Germany", "Italy", "Spain", "Finland", "Netherlands", "Greece", "Sweden"],
-    NorthAmerica: ["USA", "Canada", "Mexico", "Cuba", "Guatemala", "Panama", "Costa Rica", "Jamaica"],
-    SouthAmerica: ["Brazil", "Argentina", "Peru", "Colombia", "Chile", "Venezuela", "Bolivia", "Ecuador"],
-    Oceania: ["Australia", "New Zealand", "Fiji", "Papua New Guinea", "Samoa", "Tonga", "Vanuatu"],
+    Africa: ["Nigeria", "South Africa", "Egypt", "Morocco"],
+    Asia: ["Japan", "India", "China", "Thailand"],
+    Europe: ["France", "Germany", "Italy", "Spain"],
+    NorthAmerica: ["USA", "Canada", "Mexico", "Cuba"],
+    SouthAmerica: ["Brazil", "Argentina", "Peru", "Colombia"],
+    Oceania: ["Australia", "New Zealand", "Fiji", "Papua New Guinea"],
     Antarctica: ["Research Stations"],
   };
-  
 
-  // Toggle dropdown
-  const toggleDropdown = (key) => {
-    setDropdown(dropdown === key ? null : key);
-    setSubDropdown(null); // Close sub-dropdown when a different dropdown is toggled
-  };
-
-  // Toggle sub-dropdown
-  const toggleSubDropdown = (key) => {
-    setSubDropdown(subDropdown === key ? null : key);
-  };
-
-  // Close dropdown if clicked outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdown(null);
-        setSubDropdown(null);
+        setActiveDropdown(null);
+        setActiveSubDropdown(null);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownRef]);
+  }, []);
+
+  // Reset menu state on screen resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+        setActiveDropdown(null);
+        setActiveSubDropdown(null);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setActiveDropdown(null);
+    setActiveSubDropdown(null);
+  };
+
+  // Toggle dropdown
+  const toggleDropdown = (dropdown) => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+    setActiveSubDropdown(null); // Close sub-dropdown when toggling main dropdown
+  };
+
+  // Toggle sub-dropdown
+  const toggleSubDropdown = (subDropdown) => {
+    setActiveSubDropdown(activeSubDropdown === subDropdown ? null : subDropdown);
+  };
 
   return (
-    <nav className="bg-black font-against rounded-sm">
-      {/* Navbar Container */}
+    <nav className="bg-black font-against rounded-sm" ref={dropdownRef}>
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
@@ -54,36 +77,39 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center">
-          <Link to="/" className="text-white hover:text-white transition-all">
+          <Link to="/" className="text-white hover:text-gray-300 transition-all">
             Home
           </Link>
 
           {/* Destinations Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative">
             <button
               onClick={() => toggleDropdown("destinations")}
-              className="text-white hover:text-white focus:outline-none"
+              className="text-white hover:text-gray-300 focus:outline-none"
             >
               Destinations
             </button>
-            {dropdown === "destinations" && (
-              <div className="absolute top-full left-0 mt-2 bg-black text-white shadow-lg rounded-md w-64 z-50 hover:bg-gray-900">
+            {activeDropdown === "destinations" && (
+              <div className="absolute top-full left-0 mt-2 bg-black text-white shadow-lg rounded-md w-64 z-50">
                 {Object.keys(continents).map((continent) => (
                   <div key={continent} className="relative group">
-                    <Link
-                      to={`/${continent}`}
-                      onMouseEnter={() => toggleSubDropdown(continent)}
-                      className="block px-4 py-2 bg-black hover:text-white text-white hover:bg-gray-900"
+                    <button
+                      onClick={() => toggleSubDropdown(continent)}
+                      className="block px-4 py-2 hover:text-gray-300 text-left w-full"
                     >
                       {continent}
-                    </Link>
-                    {subDropdown === continent && (
-                      <div className="absolute left-full top-0 mt-2 text-white bg-black shadow-lg rounded-lg w-64 z-50 hover:bg-gray-900">
+                    </button>
+                    {activeSubDropdown === continent && (
+                      <div className="absolute left-full top-0 mt-2 bg-black text-white shadow-lg rounded-lg w-64 z-50">
                         {continents[continent].map((country) => (
                           <Link
                             key={country}
                             to={`/${continent}/${country}`}
-                            className="block px-4 py-2 bg-black text-white hover:text-white"
+                            className="block px-4 py-2 hover:text-gray-300"
+                            onClick={() => {
+                              setActiveDropdown(null);
+                              setActiveSubDropdown(null);
+                            }}
                           >
                             {country}
                           </Link>
@@ -96,79 +122,112 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Travel Tips */}
           <Link
             to="/travel-tips"
-            className="text-white hover:text-white transition-all"
+            className="text-white hover:text-gray-300 transition-all"
           >
             Travel Tips
           </Link>
-
-          {/* Foods */}
           <Link
             to="/foods"
-            className="text-white hover:text-white transition-all"
+            className="text-white hover:text-gray-300 transition-all"
           >
             Foods
           </Link>
-
-          {/* Gears Review */}
           <Link
             to="/gears-review"
-            className="text-white hover:text-white transition-all"
+            className="text-white hover:text-gray-300 transition-all"
           >
             Gears Review
           </Link>
-
-          {/* Contact */}
           <Link
             to="/contact"
-            className="text-white hover:text-white transition-all"
+            className="text-white hover:text-gray-300 transition-all"
           >
             Contact
           </Link>
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden relative">
+        <div className="md:hidden">
           <button
-            onClick={() => toggleDropdown("mobile")}
-            className="text-white hover:text-white focus:outline-none"
+            onClick={toggleMobileMenu}
+            className="text-white hover:text-gray-300 focus:outline-none"
           >
             ☰
           </button>
-          {dropdown === "mobile" && (
-            <div className="absolute top-12 right-0 bg-[#0B192C] shadow-lg rounded-md w-64 z-50">
-              <Link to="/" className="block px-4 py-2 text-white bg-[#0B192C]">
+          {isMobileMenuOpen && (
+            <div className="absolute top-12 right-0 bg-black shadow-lg rounded-md w-64 z-50">
+              <Link
+                to="/"
+                className="block px-4 py-2 text-white hover:text-gray-300"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 Home
               </Link>
-              <Link
-                to="/destinations"
-                className="block px-4 py-2 text-white bg-[#0B192C]"
+              <button
+                onClick={() => toggleDropdown("mobileDestinations")}
+                className="block px-4 py-2 text-white hover:text-gray-300 text-left w-full"
               >
                 Destinations
-              </Link>
+              </button>
+              {activeDropdown === "mobileDestinations" && (
+                <div className="bg-black text-white">
+                  {Object.keys(continents).map((continent) => (
+                    <div key={continent}>
+                      <button
+                        onClick={() => toggleSubDropdown(continent)}
+                        className="block px-4 py-2 text-left w-full hover:text-gray-300"
+                      >
+                        {continent}
+                      </button>
+                      {activeSubDropdown === continent && (
+                        <div className="pl-4">
+                          {continents[continent].map((country) => (
+                            <Link
+                              key={country}
+                              to={`/${continent}/${country}`}
+                              className="block px-4 py-2 hover:text-gray-300"
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setActiveDropdown(null);
+                                setActiveSubDropdown(null);
+                              }}
+                            >
+                              {country}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
               <Link
                 to="/travel-tips"
-                className="block px-4 py-2 text-white bg-[#0B192C]"
+                className="block px-4 py-2 text-white hover:text-gray-300"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Travel Tips
               </Link>
               <Link
                 to="/foods"
-                className="block px-4 py-2 text-white bg-[#0B192C]"
+                className="block px-4 py-2 text-white hover:text-gray-300"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Foods
               </Link>
               <Link
                 to="/gears-review"
-                className="block px-4 py-2 text-white bg-[#0B192C]"
+                className="block px-4 py-2 text-white hover:text-gray-300"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Gears Review
               </Link>
               <Link
                 to="/contact"
-                className="block px-4 py-2 text-white bg-[#0B192C]"
+                className="block px-4 py-2 text-white hover:text-gray-300"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </Link>

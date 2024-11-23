@@ -13,7 +13,7 @@ const China = () => {
       <main className="container mx-auto px-4">
         <article className="mb-10">
           <img
-            src="/images/china-great-wall.jpg"
+            src="/images/Asian/China/greatwall.jpg"
             alt="Great Wall of China"
             className="w-full h-64 object-cover rounded-lg shadow-lg mb-4"
           />
@@ -25,7 +25,7 @@ const China = () => {
 
         <article className="mb-10">
           <img
-            src="/images/china-forbidden-city.jpg"
+            src="/images/Asian/China/forbiddencity.jpg"
             alt="Forbidden City"
             className="w-full h-64 object-cover rounded-lg shadow-lg mb-4"
           />
@@ -37,7 +37,7 @@ const China = () => {
 
         <article className="mb-10">
           <img
-            src="/images/china-terracotta-army.jpg"
+            src="/images/Asian/China/terracottaarmy.jpg"
             alt="Terracotta Army"
             className="w-full h-64 object-cover rounded-lg shadow-lg mb-4"
           />

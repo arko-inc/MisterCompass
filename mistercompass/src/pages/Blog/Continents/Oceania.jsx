@@ -22,7 +22,7 @@ const Oceania = () => {
         <section className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <h2 className="text-4xl font-against">Natural Beauty</h2>
-            <img src="https://via.placeholder.com/400x300" alt="Oceania Landscape" className="my-4 rounded-md shadow-md"/>
+            <img src="/images/Oceanian/Australia/auforest.jpg" alt="Oceania Landscape" className="my-4 rounded-md shadow-md"/>
             <p className="mt-2 text-gray-700">
               Explore the natural beauty of Oceania, from its pristine beaches and lush rainforests to its vibrant 
               coral reefs and unique wildlife. The region is a paradise for nature lovers and adventure seekers.
@@ -31,7 +31,7 @@ const Oceania = () => {
 
           <div>
             <h2 className="text-4xl font-against">Cultural Heritage</h2>
-            <img src="https://via.placeholder.com/400x300" alt="Oceania Culture" className="my-4 rounded-md shadow-md"/>
+            <img src="/images/Oceanian/Australia/samoandance.jpg" alt="Oceania Culture" className="my-4 rounded-md shadow-md"/>
             <p className="mt-2 text-gray-700">
               Oceania's cultural heritage is rich with traditions that have been passed down through generations. 
               Discover the unique customs, music, dance, and art that define the many cultures of the region.
@@ -40,7 +40,7 @@ const Oceania = () => {
 
           <div>
             <h2 className="text-4xl font-against">Marine Wonders</h2>
-            <img src="https://via.placeholder.com/400x300" alt="Oceania Marine Life" className="my-4 rounded-md shadow-md"/>
+            <img src="/images/Oceanian/Australia/gbreef.jpg" alt="Oceania Marine Life" className="my-4 rounded-md shadow-md"/>
             <p className="mt-2 text-gray-700">
               The marine life in Oceania is unparalleled, with some of the world's best diving and snorkeling spots. 
               Explore the underwater wonders and vibrant marine ecosystems that make this region a haven for divers.

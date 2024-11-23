@@ -28,7 +28,7 @@ const Australia = () => {
 
             <div className="bg-white text-black p-6 rounded-lg shadow-lg">
               <img
-                src="/images/australia-great-barrier-reef.jpg"
+                src="/images/Oceanian/Australia/gbreef.jpg"
                 alt="Great Barrier Reef"
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
