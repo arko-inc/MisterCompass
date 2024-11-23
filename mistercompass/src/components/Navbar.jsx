@@ -68,16 +68,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-black font-against rounded-sm" ref={dropdownRef}>
+    <nav className="bg-white font-against rounded-sm 0" ref={dropdownRef}>
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+          <img src="/public/logo/logo.png" alt="Logo" className="h-10 w-auto" />
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center">
-          <Link to="/" className="text-white hover:text-gray-300 transition-all">
+          <Link to="/" className="text-black hover:text-red-500 transition-all">
             Home
           </Link>
 
@@ -85,27 +85,27 @@ const Navbar = () => {
           <div className="relative">
             <button
               onClick={() => toggleDropdown("destinations")}
-              className="text-white hover:text-gray-300 focus:outline-none"
+              className="text-black hover:text-red-500 focus:outline-none"
             >
               Destinations
             </button>
             {activeDropdown === "destinations" && (
-              <div className="absolute top-full left-0 mt-2 bg-black text-white shadow-lg rounded-md w-64 z-50">
+              <div className="absolute top-full left-0 mt-2 bg-white text-black shadow-lg rounded-md w-64 z-50">
                 {Object.keys(continents).map((continent) => (
                   <div key={continent} className="relative group">
                     <button
                       onClick={() => toggleSubDropdown(continent)}
-                      className="block px-4 py-2 hover:text-gray-300 text-left w-full"
+                      className="block px-4 py-2 hover:text-red-500 text-left w-full"
                     >
                       {continent}
                     </button>
                     {activeSubDropdown === continent && (
-                      <div className="absolute left-full top-0 mt-2 bg-black text-white shadow-lg rounded-lg w-64 z-50">
+                      <div className="absolute left-full top-0 mt-2 bg-white text-black shadow-lg rounded-lg w-64 z-50">
                         {continents[continent].map((country) => (
                           <Link
                             key={country}
                             to={`/${continent}/${country}`}
-                            className="block px-4 py-2 hover:text-gray-300"
+                            className="block px-4 py-2 hover:text-red-500"
                             onClick={() => {
                               setActiveDropdown(null);
                               setActiveSubDropdown(null);
@@ -124,25 +124,25 @@ const Navbar = () => {
 
           <Link
             to="/travel-tips"
-            className="text-white hover:text-gray-300 transition-all"
+            className="text-black hover:text-red-500 transition-all"
           >
             Travel Tips
           </Link>
           <Link
             to="/foods"
-            className="text-white hover:text-gray-300 transition-all"
+            className="text-black hover:text-red-500 transition-all"
           >
             Foods
           </Link>
           <Link
             to="/gears-review"
-            className="text-white hover:text-gray-300 transition-all"
+            className="text-black hover:text-red-500 transition-all"
           >
             Gears Review
           </Link>
           <Link
             to="/contact"
-            className="text-white hover:text-gray-300 transition-all"
+            className="text-black hover:text-red-500 transition-all"
           >
             Contact
           </Link>
@@ -152,32 +152,32 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             onClick={toggleMobileMenu}
-            className="text-white hover:text-gray-300 focus:outline-none"
+            className="text-black hover:text-red-500 focus:outline-none"
           >
             ☰
           </button>
           {isMobileMenuOpen && (
-            <div className="absolute top-12 right-0 bg-black shadow-lg rounded-md w-64 z-50">
+            <div className="absolute top-12 right-0 bg-white shadow-lg rounded-md w-64 z-50">
               <Link
                 to="/"
-                className="block px-4 py-2 text-white hover:text-gray-300"
+                className="block px-4 py-2 text-black hover:text-red-500"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <button
                 onClick={() => toggleDropdown("mobileDestinations")}
-                className="block px-4 py-2 text-white hover:text-gray-300 text-left w-full"
+                className="block px-4 py-2 text-black hover:text-red-500 text-left w-full"
               >
                 Destinations
               </button>
               {activeDropdown === "mobileDestinations" && (
-                <div className="bg-black text-white">
+                <div className="bg-white text-black">
                   {Object.keys(continents).map((continent) => (
                     <div key={continent}>
                       <button
                         onClick={() => toggleSubDropdown(continent)}
-                        className="block px-4 py-2 text-left w-full hover:text-gray-300"
+                        className="block px-4 py-2 text-left w-full hover:text-red-500"
                       >
                         {continent}
                       </button>
@@ -187,7 +187,7 @@ const Navbar = () => {
                             <Link
                               key={country}
                               to={`/${continent}/${country}`}
-                              className="block px-4 py-2 hover:text-gray-300"
+                              className="block px-4 py-2 hover:text-red-500"
                               onClick={() => {
                                 setIsMobileMenuOpen(false);
                                 setActiveDropdown(null);
@@ -205,28 +205,28 @@ const Navbar = () => {
               )}
               <Link
                 to="/travel-tips"
-                className="block px-4 py-2 text-white hover:text-gray-300"
+                className="block px-4 py-2 text-black hover:text-red-500"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Travel Tips
               </Link>
               <Link
                 to="/foods"
-                className="block px-4 py-2 text-white hover:text-gray-300"
+                className="block px-4 py-2 text-black hover:text-red-500"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Foods
               </Link>
               <Link
                 to="/gears-review"
-                className="block px-4 py-2 text-white hover:text-gray-300"
+                className="block px-4 py-2 text-black hover:text-red-500"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Gears Review
               </Link>
               <Link
                 to="/contact"
-                className="block px-4 py-2 text-white hover:text-gray-300"
+                className="block px-4 py-2 text-black hover:text-red-500"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact

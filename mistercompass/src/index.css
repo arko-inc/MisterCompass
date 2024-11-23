@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  overflow-x: hidden;
+}
 @font-face {
     font-family: 'Against'; /* Custom font name */
     src: url('./assets/fonts/against.ttf') format('truetype');
