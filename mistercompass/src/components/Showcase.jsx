@@ -6,12 +6,12 @@ const Showcase = () => {
   const blogs = [
     {
       id: 1,
-      title: "Frosty Finland", image: "/images/finland.jpg", link: "/Europe/Finland", description:"Welcome to Finland",
+      title: "Frosty Finland", image: "/images/European/finland.jpg", link: "/Europe/Finland", description:"Welcome to Finland",
     },
     { id: 2,
-       title: "Jurasic South Africa", image: "/images/kruger.jpg", link: "/Africa/South Africa" , description:"World's biggest open Zoo, Close to wild",
+       title: "Jurasic South Africa", image: "/images/African/kruger.jpg", link: "/Africa/South Africa" , description:"World's biggest open Zoo, Close to wild",
         },
-    { id: 3, title: "Icy Iceland", image: "/images/iceland.jpg", link: "/blog/3"  , description:"Ice Beauty, Snow White", },
+    { id: 3, title: "Icy Iceland", image: "/images/European/iceland.jpg", link: "/blog/3"  , description:"Ice Beauty, Snow White", },
     { id: 4, title: "Blog 4", image: "/images/blog4.jpg", link: "/blog/4" , description:"", },
     { id: 5, title: "Blog 5", image: "/images/blog5.jpg", link: "/blog/5" , description:"", },
     { id: 6, title: "Blog 6", image: "/images/blog6.jpg", link: "/blog/6"  , description:"",},

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Food from "./pages/Food";
 import Africa from "./pages/Blog/Continents/Africa";
 import Asia from "./pages/Blog/Continents/Asia";
 import Europe from "./pages/Blog/Continents/Europe";
@@ -24,6 +25,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Foods" element={<Food />} />
         <Route path="/travel-tips" element={<TravelTips />} />
         <Route path="/Africa/South Africa" element={<SouthAfrica />} />
         <Route path="/Europe/Finland" element={<Finland />} />
