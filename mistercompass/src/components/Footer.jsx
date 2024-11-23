@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faTwitter, faInstagram, faPinterest } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
@@ -30,22 +28,22 @@ const Footer = () => {
           <ul className="flex space-x-4">
             <li>
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faFacebookF} /> Facebook
+                <i className="fab fa-facebook-f"></i> Facebook
               </a>
             </li>
             <li>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faTwitter} /> Twitter
+                <i className="fab fa-twitter"></i> Twitter
               </a>
             </li>
             <li>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faInstagram} /> Instagram
+                <i className="fab fa-instagram"></i> Instagram
               </a>
             </li>
             <li>
               <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faPinterest} /> Pinterest
+                <i className="fab fa-pinterest"></i> Pinterest
               </a>
             </li>
           </ul>
