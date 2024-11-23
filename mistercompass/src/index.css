@@ -7,4 +7,26 @@
     font-weight: normal;
     font-style: normal;
   }
-  
+  /* For Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: black; /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: red; /* Scrollbar color */
+  border-radius: 6px; /* Rounded corners for the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e60000; /* Darker red when hovered */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin; /* Set the width of the scrollbar */
+  scrollbar-color: red black; /* Scrollbar thumb and track colors */
+}

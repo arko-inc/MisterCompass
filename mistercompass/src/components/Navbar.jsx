@@ -8,14 +8,15 @@ const Navbar = () => {
 
   // List of continents and countries
   const continents = {
-    Africa: ["Nigeria", "South Africa", "Egypt", "Morocco"],
-    Asia: ["Japan", "India", "China", "Thailand"],
-    Europe: ["France", "Germany", "Italy", "Spain", "Finland"],
-    NorthAmerica: ["USA", "Canada", "Mexico", "Cuba"],
-    SouthAmerica: ["Brazil", "Argentina", "Peru", "Colombia"],
-    Oceania: ["Australia", "New Zealand", "Fiji"],
+    Africa: ["Nigeria", "South Africa", "Egypt", "Morocco", "Kenya", "Ghana", "Ethiopia", "Tunisia"],
+    Asia: ["Japan", "India", "China", "Thailand", "South Korea", "Vietnam", "Malaysia", "Indonesia"],
+    Europe: ["France", "Germany", "Italy", "Spain", "Finland", "Netherlands", "Greece", "Sweden"],
+    NorthAmerica: ["USA", "Canada", "Mexico", "Cuba", "Guatemala", "Panama", "Costa Rica", "Jamaica"],
+    SouthAmerica: ["Brazil", "Argentina", "Peru", "Colombia", "Chile", "Venezuela", "Bolivia", "Ecuador"],
+    Oceania: ["Australia", "New Zealand", "Fiji", "Papua New Guinea", "Samoa", "Tonga", "Vanuatu"],
     Antarctica: ["Research Stations"],
   };
+  
 
   // Toggle dropdown
   const toggleDropdown = (key) => {
@@ -104,7 +105,10 @@ const Navbar = () => {
           </Link>
 
           {/* Foods */}
-          <Link to="/foods" className="text-white hover:text-white transition-all">
+          <Link
+            to="/foods"
+            className="text-white hover:text-white transition-all"
+          >
             Foods
           </Link>
 
@@ -117,7 +121,10 @@ const Navbar = () => {
           </Link>
 
           {/* Contact */}
-          <Link to="/contact" className="text-white hover:text-white transition-all">
+          <Link
+            to="/contact"
+            className="text-white hover:text-white transition-all"
+          >
             Contact
           </Link>
         </div>
@@ -147,7 +154,10 @@ const Navbar = () => {
               >
                 Travel Tips
               </Link>
-              <Link to="/foods" className="block px-4 py-2 text-white bg-[#0B192C]">
+              <Link
+                to="/foods"
+                className="block px-4 py-2 text-white bg-[#0B192C]"
+              >
                 Foods
               </Link>
               <Link
@@ -156,7 +166,10 @@ const Navbar = () => {
               >
                 Gears Review
               </Link>
-              <Link to="/contact" className="block px-4 py-2 text-white bg-[#0B192C]">
+              <Link
+                to="/contact"
+                className="block px-4 py-2 text-white bg-[#0B192C]"
+              >
                 Contact
               </Link>
             </div>
