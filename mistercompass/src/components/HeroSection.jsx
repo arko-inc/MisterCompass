@@ -27,15 +27,17 @@ const HeroSection = () => {
     >
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       <div className="relative text-center text-white">
-  <h1 className="text-5xl font-bold mb-4 animate-pulse">
-    Welcome to <span className="animate-inflate-deflate">MisterCompass</span>
+  <h1 className="text-5xl font-bold font-against mb-4 animate-pulse md:text-xl">
+    Welcome to <span className="animate-inflate-deflate ">MisterCompass</span>
   </h1>
-  <p className="text-lg mb-6">
+  <p className="md:text-lg mb-6 font-against animate-pulse">
     Explore the world’s most beautiful destinations with us.
   </p>
- <button href ="/Home" className="px-6 py-3 rounded-lg shadow-lg text-white hover:scale-105 transform transition-transform duration-300 ease-in-out bg-gradient-to-r from-red-500 to-pink-500 bg-opacity-20 backdrop-blur-md border border-white/20">
+  <button href="/Home" className="px-6 py-3 rounded-lg shadow-lg font-against text-white hover:scale-105 transform animate-pulse  transition-transform duration-300 ease-in-out bg-white/5 backdrop-blur-md border border-white">
   Start Your Journey
 </button>
+
+
 
 </div>
 

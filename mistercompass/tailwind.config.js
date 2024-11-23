@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+     
+      fontFamily: {
+        against: ['Against', 'sans-serif'], // Add the custom font
+      },
       keyframes: {
         inflateDeflate: {
           "0%, 100%": { transform: "scale(1)" },

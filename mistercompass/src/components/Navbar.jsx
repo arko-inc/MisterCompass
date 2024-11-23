@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(null);
   const [subDropdown, setSubDropdown] = useState(null);
+  const dropdownRef = useRef(null);
 
   // List of continents and countries
   const continents = {
     Africa: ["Nigeria", "South Africa", "Egypt", "Morocco"],
     Asia: ["Japan", "India", "China", "Thailand"],
-    Europe: ["France", "Germany", "Italy", "Spain"],
+    Europe: ["France", "Germany", "Italy", "Spain", "Finland"],
     NorthAmerica: ["USA", "Canada", "Mexico", "Cuba"],
     SouthAmerica: ["Brazil", "Argentina", "Peru", "Colombia"],
-    Australia: ["Australia", "New Zealand", "Fiji"],
+    Oceania: ["Australia", "New Zealand", "Fiji"],
     Antarctica: ["Research Stations"],
   };
 
@@ -26,57 +28,64 @@ const Navbar = () => {
     setSubDropdown(subDropdown === key ? null : key);
   };
 
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdown(null);
+        setSubDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   return (
-    <nav className=" bg-[#0B192C] shadow-md font-helvetica">
+    <nav className="bg-black font-against rounded-sm">
       {/* Navbar Container */}
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="h-10 w-auto"
-          />
+          <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center">
-          <a
-            href="/"
-            className="text-red-500 hover:text-pink-500 transition-all"
-          >
+          <Link to="/" className="text-white hover:text-white transition-all">
             Home
-          </a>
+          </Link>
 
           {/* Destinations Dropdown */}
-          <div className="relative transition duration-700">
+          <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => toggleDropdown("destinations")}
-              className="text-red-500 hover:text-pink-500 focus:outline-none"
+              className="text-white hover:text-white focus:outline-none"
             >
               Destinations
             </button>
             {dropdown === "destinations" && (
-              <div className="absolute top-full left-0 mt-2  bg-[#0B192C] shadow-lg rounded-md w-64 z-50 ">
+              <div className="absolute top-full left-0 mt-2 bg-black text-white shadow-lg rounded-md w-64 z-50 hover:bg-gray-900">
                 {Object.keys(continents).map((continent) => (
                   <div key={continent} className="relative group">
-                    <a
-                      href={`/${continent}`}
+                    <Link
+                      to={`/${continent}`}
                       onMouseEnter={() => toggleSubDropdown(continent)}
-                      className="block px-4 py-2 text-red-500 bg-[#0B192C] hover:text-pink-500"
+                      className="block px-4 py-2 bg-black hover:text-white text-white hover:bg-gray-900"
                     >
                       {continent}
-                    </a>
+                    </Link>
                     {subDropdown === continent && (
-                      <div className="absolute left-full top-0 mt-2  bg-[#0B192C] shadow-lg rounded-md w-64 z-50 hover:text-pink-500">
+                      <div className="absolute left-full top-0 mt-2 text-white bg-black shadow-lg rounded-lg w-64 z-50 hover:bg-gray-900">
                         {continents[continent].map((country) => (
-                          <a
+                          <Link
                             key={country}
-                            href={`/${continent}/${country}`}
-                            className="block px-4 py-2 text-red-500 bg-[#0B192C] hover:text-pink-500"
+                            to={`/${continent}/${country}`}
+                            className="block px-4 py-2 bg-black text-white hover:text-white"
                           >
                             {country}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -86,69 +95,76 @@ const Navbar = () => {
             )}
           </div>
 
-          <a
-            href="/travel-tips"
-            className="text-red-500 hover:text-pink-500 transition-all"
+          {/* Travel Tips */}
+          <Link
+            to="/travel-tips"
+            className="text-white hover:text-white transition-all"
           >
             Travel Tips
-          </a>
-          <a
-            href="/foods"
-            className="text-red-500 hover:text-pink-500 transition-all"
-          >
+          </Link>
+
+          {/* Foods */}
+          <Link to="/foods" className="text-white hover:text-white transition-all">
             Foods
-          </a>
-          <a
-            href="/gears-review"
-            className="text-red-500 hover:text-pink-500 transition-all"
+          </Link>
+
+          {/* Gears Review */}
+          <Link
+            to="/gears-review"
+            className="text-white hover:text-white transition-all"
           >
             Gears Review
-          </a>
-          <a
-            href="/contact"
-            className="text-red-500 hover:text-pink-500 transition-all"
-          >
-            Contact
-          </a>
-        </div>
-        <div className="md:hidden relative">
-  <button
-    onClick={() => toggleDropdown("mobile")}
-    className="text-red-500 hover:text-pink-500 focus:outline-none"
-  >
-    ☰
-  </button>
-  {dropdown === "mobile" && (
-    <div className="absolute top-12 right-0  bg-[#0B192C] shadow-lg rounded-md w-64 z-50">
-      {/* Normal Links */}
-      <a href="/" className="block px-4 py-2 text-red-500 bg-[#0B192C]">
-        Home
-      </a>
-      <a href="/destinations" className="block px-4 py-2 text-red-500 bg-[#0B192C]">
-        Destinations
-      </a>
-      <a href="/travel-tips" className="block px-4 py-2 text-red-500 bg-[#0B192C]">
-        Travel Tips
-      </a>
-      <a href="/foods" className="block px-4 py-2 text-red-500 bg-[#0B192C]">
-        Foods
-      </a>
-      <a href="/gears-review" className="block px-4 py-2 text-red-500 bg-[#0B192C]">
-        Gears Review
-      </a>
-      <a href="/contact" className="block px-4 py-2 text-red-500 bg-[#0B192C]">
-        Contact
-      </a>
-    </div>
-  )}
-</div>
-      </div>
+          </Link>
 
- 
+          {/* Contact */}
+          <Link to="/contact" className="text-white hover:text-white transition-all">
+            Contact
+          </Link>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="md:hidden relative">
+          <button
+            onClick={() => toggleDropdown("mobile")}
+            className="text-white hover:text-white focus:outline-none"
+          >
+            ☰
+          </button>
+          {dropdown === "mobile" && (
+            <div className="absolute top-12 right-0 bg-[#0B192C] shadow-lg rounded-md w-64 z-50">
+              <Link to="/" className="block px-4 py-2 text-white bg-[#0B192C]">
+                Home
+              </Link>
+              <Link
+                to="/destinations"
+                className="block px-4 py-2 text-white bg-[#0B192C]"
+              >
+                Destinations
+              </Link>
+              <Link
+                to="/travel-tips"
+                className="block px-4 py-2 text-white bg-[#0B192C]"
+              >
+                Travel Tips
+              </Link>
+              <Link to="/foods" className="block px-4 py-2 text-white bg-[#0B192C]">
+                Foods
+              </Link>
+              <Link
+                to="/gears-review"
+                className="block px-4 py-2 text-white bg-[#0B192C]"
+              >
+                Gears Review
+              </Link>
+              <Link to="/contact" className="block px-4 py-2 text-white bg-[#0B192C]">
+                Contact
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
     </nav>
   );
 };
 
 export default Navbar;
-
-

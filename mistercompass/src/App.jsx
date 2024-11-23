@@ -1,13 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import CountryPage from "./pages/CountryPage";
-import SouthAfrica from "./pages/SouthAfrica";
+import Africa from "./pages/Blog/Continents/Africa";
+import Asia from "./pages/Blog/Continents/Asia";
+import Europe from "./pages/Blog/Continents/Europe";
+import NorthAmerica from "./pages/Blog/Continents/NorthAmerica";
+import SouthAmerica from "./pages/Blog/Continents/SouthAmerica";
+import Oceania from "./pages/Blog/Continents/Oceania";
+import Antarctica from "./pages/Blog/Continents/Antarctica";
 
-const continents = {
-  Africa: ["Nigeria", "South Africa", "Egypt", "Morocco"],
-
-};
+import SouthAfrica from "./pages/Blog/Countries/African/SouthAfrica";
+import TravelTips from "./pages/Traveltips";
+import Finland from "./pages/Blog/Countries/European/Finland";
+import Japan from "./pages/Blog/Countries/Asian/Japan";
+import Egypt from "./pages/Blog/Countries/African/Egypt";
 
 function App() {
   return (
@@ -15,25 +21,21 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/travel-tips" element={<TravelTips />} />
         <Route path="/Africa/South Africa" element={<SouthAfrica />} />
-
-        {Object.keys(continents).map((continent) =>
-          continents[continent].map((country) =>
-            country !== "South Africa" ? (
-              <Route
-                key={`${continent}-${country}`}
-                path={`/${continent}/${country}`}
-                element={<CountryPage continent={continent} country={country} />}
-              />
-            ) : null
-          )
-        )}
+        <Route path="/Europe/Finland" element={<Finland />} />
+        <Route path="/Asia/Japan" element={<Japan />} />
+        <Route path="/Africa" element={<Africa />} />
+        <Route path="/Africa/Egypt" element={<Egypt />} />
+        <Route path="/Asia" element={<Asia />} />
+        <Route path="/Europe" element={<Europe />} />
+        <Route path="/NorthAmerica" element={<NorthAmerica />} />
+        <Route path="/SouthAmerica" element={<SouthAmerica />} />
+        <Route path="/Oceania" element={<Oceania />} />
+        <Route path="/Antarctica" element={<Antarctica />} />
       </Routes>
-     
     </Router>
-  
   );
-  
 }
 
 export default App;
